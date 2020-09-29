@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Сonfiguration status="WARN">
+    <Properties>
+        <property name = "pattern">
+            %d{yyyy-MM-dd HH:mm:ss} [%t] %-5level %logger{5}- %msg%n
+        </property>
+    </Properties>
+    <Appenders>
+        <File name = "txt_file" filename = "logs/text.log" bufferedIO = "true">
+            <PatternLayout pattern ="${pattern}"/>
+        </File>
+        <Console name = "console" bufferedIO = "true">
+            <PatternLayout pattern ="${pattern}"/>
+        </Console>
+    </Appenders>
+
+    <Loggers>
+        <Root level = "debug">
+            <Appender-ref ref="txt_file" level = "debug"/>
+            <Appender-ref ref="console" level="debug"/>
+        </Root>
+    </Loggers>
+</Сonfiguration>
