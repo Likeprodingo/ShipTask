@@ -69,7 +69,9 @@ public class PortService {
             } catch (InterruptedException e) {
                 logger.log(Level.ERROR, "Unload exception ", e);
             }
-            processLock.unlock();
+            finally {
+                processLock.unlock();
+            }
         }
         return true;
     }
@@ -77,7 +79,7 @@ public class PortService {
     public boolean upload(Ship ship) {
         while (true) {
             try {
-                processLock.tryLock(100, TimeUnit.SECONDS);
+                processLock.tryLock(10, TimeUnit.SECONDS);
                 Optional<Box> box = port.takeBox();
                 if (box.isEmpty()) {
                     break;
@@ -97,7 +99,10 @@ public class PortService {
             } catch (InterruptedException e) {
                 logger.log(Level.ERROR, "Upload exception ", e);
             }
-            processLock.unlock();
+            finally {
+                processLock.unlock();
+            }
+
         }
         return true;
     }

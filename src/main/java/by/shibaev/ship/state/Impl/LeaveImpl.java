@@ -11,7 +11,7 @@ public class LeaveImpl implements ProcessState {
     public void doAction(Ship ship) {
         PortService portService = PortService.INSTANCE;
         portService.leave();
-        logger.log(Level.INFO,ship.getName() + "leave dock");
+        logger.log(Level.INFO,ship.getName() + " leave dock");
         ship.setActive(false);
         Thread.currentThread().interrupt();
     }
